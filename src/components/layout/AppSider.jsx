@@ -3,14 +3,14 @@ import { Layout, Card, Statistic, List, Typography, Tag } from "antd";
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { capitalize, percentDifference } from "../utils.js";
 import { useContext } from "react";
-import CryptoContext from "../../context/crypto-context.jsx";
+import { useCrypto } from "../../context/crypto-context.jsx";
 
 const siderStyle = {
   padding: "1rem",
 };
 
 export default function AppSider() {
-  const { assets, crypto } = useContext(CryptoContext);
+  const { assets, crypto } = useCrypto();
 
   return (
     <Layout.Sider width="25%" style={siderStyle}>
@@ -47,7 +47,7 @@ export default function AppSider() {
                   {item.isPlain && item.value}
                   {!item.isPlain && (
                     <Typography.Text type={asset.grow ? "success" : "danger"}>
-                      {item.value.toFixed(2)}$
+                      {item.value}$
                     </Typography.Text>
                   )}
                 </span>

@@ -21,6 +21,10 @@ export default function AppHeader() {
   const [drawer, setDrawer] = useState(false);
   const { crypto } = useCrypto();
 
+  const onClose = () => {
+    setDrawer(false);
+  };
+
   useEffect(() => {
     const keypress = (event) => {
       if (event.key === "/") {
@@ -86,8 +90,9 @@ export default function AppHeader() {
         closable={{ "aria-label": "Close Button" }}
         onClose={() => setDrawer((prev) => !prev)}
         open={drawer}
+        destroyOnHidden
       >
-        <AddAssetsForm />
+        <AddAssetsForm onClose={onClose} />
       </Drawer>
     </Layout.Header>
   );
