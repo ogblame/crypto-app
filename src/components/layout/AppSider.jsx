@@ -33,7 +33,6 @@ export default function AppSider() {
                 withTag: true,
               },
               { title: "Asset Amount", value: asset.amount, isPlain: true },
-              // { title: "Difference", value: asset.growPercent },
             ]}
             renderItem={(item) => (
               <List.Item>
@@ -47,7 +46,7 @@ export default function AppSider() {
                   {item.isPlain && item.value}
                   {!item.isPlain && (
                     <Typography.Text type={asset.grow ? "success" : "danger"}>
-                      {item.value}$
+                      {item.value.toFixed(2)}$
                     </Typography.Text>
                   )}
                 </span>
@@ -56,17 +55,6 @@ export default function AppSider() {
           />
         </Card>
       ))}
-
-      {/* <Card variant="borderless">
-        <Statistic
-          title="Idle"
-          value={9.3}
-          precision={2}
-          styles={{ content: { color: "#cf1322" } }}
-          prefix={<ArrowDownOutlined />}
-          suffix="%"
-        />
-      </Card> */}
     </Layout.Sider>
   );
 }

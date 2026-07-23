@@ -1,5 +1,8 @@
 import React from "react";
-import { Layout } from "antd";
+import { Layout, Typography } from "antd";
+import { useCrypto } from "../../context/crypto-context";
+import PortfolioChart from "../PortfolioChart";
+import AssetsTable from "../AssetsTable";
 
 const contentStyle = {
   textAlign: "center",
@@ -9,5 +12,31 @@ const contentStyle = {
 };
 
 export default function AppContent() {
-  return <Layout.Content style={contentStyle}>Content</Layout.Content>;
+  const { crypto, assets } = useCrypto();
+
+  const cryptoPriceMap = crypto.reduce((acc, c) => {
+    acc[c.id] = c.price;
+    return acc;
+  }, {});
+
+  const cryptoMap = Object.fromEntries(
+    crypto.map(({ id, price }) => [id, price]),
+  );
+
+  return (
+    <Layout.Content style={contentStyle}>
+      <Typography.Title level={3} style={{ textAlign: "left", color: "white" }}>
+        Portfolio:{" "}
+        {assets
+          .map((asset) => {
+            return asset.amount * cryptoMap[asset.id];
+          })
+          .reduce((acc, el) => acc + el, 0)
+          .toFixed(2)}
+        $
+      </Typography.Title>
+      <PortfolioChart />
+      <AssetsTable />
+    </Layout.Content>
+  );
 }
