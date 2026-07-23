@@ -2,6 +2,8 @@
 
 Небольшое React-приложение для отслеживания криптовалютного портфеля.
 
+![Preview](https://raw.githubusercontent.com/ogblame/crypto-app/main/frontend/public/assets/screenshots/preview.png)
+
 ## 📌 Что реализовано
 
 - 📊 Просмотр списка криптовалют
